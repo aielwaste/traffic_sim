@@ -24,7 +24,7 @@ public class SwingAnimatorBuilder implements AnimatorBuilder {
   public SwingAnimatorBuilder() {
     _painter = new MyPainter();
   }
-  
+
   public Animator getAnimator() {
     if (_painter == null) throw new IllegalStateException();
     Animator returnValue = new SwingAnimator(_painter, "Traffic Simulator", VP.displayWidth, VP.displayHeight, VP.displayDelay);
@@ -33,31 +33,28 @@ public class SwingAnimatorBuilder implements AnimatorBuilder {
     return returnValue;
   }
 
-  public void addLight(Light d, int i, int j)
-  {
+  public void addLight(Light d, int i, int j) {
     double x = skipInit + skipRoad + j * skipRoadCar;
     double y = skipInit + skipRoad + i * skipRoadCar;
     Translator t = new TranslatorWE(x, y, MP.carLength, VP.elementWidth, VP.scaleFactor);
     _painter.addLight(d, t);
   }
+
   public void addHorizontalRoad(Road l, int i, int j, boolean eastToWest) {
     double x = skipInit + j * skipRoadCar;
     double y = skipInit + skipRoad + i * skipRoadCar;
     Translator t = eastToWest ? new TranslatorEW(x, y, MP.roadDrawLength, VP.elementWidth, VP.scaleFactor) : new TranslatorWE(x, y, MP.roadDrawLength, VP.elementWidth, VP.scaleFactor);
-
     _painter.addRoad(l, t);
   }
+
   public void addVerticalRoad(Road l, int i, int j, boolean southToNorth) {
     double x = skipInit + skipRoad + j * skipRoadCar;
     double y = skipInit + i * skipRoadCar;
     Translator t = southToNorth ? new TranslatorSN(x, y, MP.roadDrawLength, VP.elementWidth, VP.scaleFactor) : new TranslatorNS(x, y, MP.roadDrawLength, VP.elementWidth, VP.scaleFactor);
-
     _painter.addRoad(l, t);
   }
 
-  private static class MyPainter
-    implements SwingAnimatorPainter
-  {
+  private static class MyPainter implements SwingAnimatorPainter {
     private List<Element<Road>> _roadElements;
     private List<Element<Light>> _lightElements;
 
@@ -65,11 +62,11 @@ public class SwingAnimatorBuilder implements AnimatorBuilder {
       _roadElements = new ArrayList<>();
       _lightElements = new ArrayList<>();
     }
-    
+
     void addLight(Light x, Translator t) {
       _lightElements.add(new Element<Light>(x, t));
     }
-    
+
     void addRoad(Road x, Translator t) {
       _roadElements.add(new Element<Road>(x, t));
     }
@@ -93,15 +90,13 @@ public class SwingAnimatorBuilder implements AnimatorBuilder {
         XGraphics.fillRect(g, e.t, 0.0D, 0.0D, MP.roadDrawLength, VP.elementWidth);
       }
 
-      for (Element<?> e : _roadElements)
-      {
+      for (Element<?> e : _roadElements) {
         for (Car d : (Car[])((Road)e.x).getCars().toArray(new Car[0])) {
           g.setColor(d.getColor());
           XGraphics.fillOval(g, e.t, d.getPosition() / (d.getOberver().getLength() / MP.roadDrawLength), 0.0D, d.getCarLength() / (d.getOberver().getLength() / MP.roadDrawLength), VP.elementWidth);
         }
       }
     }
-
     private static class Element<T> {
       T x;
       Translator t;
