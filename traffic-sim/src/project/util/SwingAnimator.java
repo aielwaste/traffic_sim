@@ -3,13 +3,10 @@ package project.util;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.util.Observable;
-import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
   
 /**
  * A swing implementation of {@link Animator}, using a {@link JFrame}
@@ -42,10 +39,10 @@ public class SwingAnimator implements Animator {
     // Create a graphics window and display it
     SwingUtilities.invokeLater(new Runnable() {
         public void run() {
-          _content = new ContentPane(painter, width, height); // A paintable component for content
+          _content = new SwingAnimator.ContentPane(painter, width, height); // A paintable component for content
           _frame = new JFrame();  // An OS window
           _frame.setTitle(name);  // The title of the Frame
-          _frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);  // End program if Frame is closed
+          _frame.setDefaultCloseOperation(3);  // End program if Frame is closed
           _frame.setContentPane(_content); // Associate the content with the Frame
           _frame.pack(); // Fix the layout of the Frame
           _frame.setVisible(true); // Display the Frame
@@ -82,7 +79,8 @@ public class SwingAnimator implements Animator {
     
     // Delay the main thread
     try {
-        Thread.currentThread().sleep(_delay);
+        Thread.currentThread();
+        Thread.sleep(_delay);
     } catch (InterruptedException e) {}
   }
 
@@ -106,7 +104,8 @@ public class SwingAnimator implements Animator {
       setBackground(Color.WHITE);
     }
     
-    void setPainter(SwingAnimatorPainter painter) {
+    @SuppressWarnings("unused")
+	void setPainter(SwingAnimatorPainter painter) {
       _painter = painter;
     }
 

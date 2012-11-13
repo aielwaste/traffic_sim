@@ -1,15 +1,17 @@
 package project.ui;
 
 import javax.swing.JOptionPane;
-//import java.io.IOException;
 
-public final class PopupUI implements UI {
-  public void displayMessage(String message) {
-    JOptionPane.showMessageDialog(null,message);
+public final class PopupUI
+  implements UI
+{
+  public void displayMessage(String message)
+  {
+    JOptionPane.showMessageDialog(null, message);
   }
 
   public void displayError(String message) {
-    JOptionPane.showMessageDialog(null,message,"Error",JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(null, message, "Error", 0);
   }
 
   public void processMenu(UIMenu menu) {
@@ -20,16 +22,16 @@ public final class PopupUI implements UI {
     b.append("\n");
 
     for (int i = 1; i < menu.size(); i++) {
-      b.append("  " + i + ". " + menu.getPrompt(i));
+      b.append(new StringBuilder().append("  ").append(i).append(". ").append(menu.getPrompt(i)).toString());
       b.append("\n");
     }
 
     String response = JOptionPane.showInputDialog(b.toString());
-    if (response == null) {
+    if (response == null)
       response = "";
-    }
     int selection;
-    try {
+    try
+    {
       selection = Integer.parseInt(response, 10);
       if ((selection < 0) || (selection >= menu.size()))
         selection = 0;
@@ -40,8 +42,17 @@ public final class PopupUI implements UI {
     menu.runAction(selection);
   }
 
-  public String[] processForm(UIForm form) {
-    // TODO
-    return null;
+  public String[] processForm(UIForm form)
+  {
+    String[] result = new String[form.size()];
+
+    for (int x = 0; x < form.size(); x++)
+    {
+      String response = JOptionPane.showInputDialog(new StringBuilder().append("Enter ").append(form.getPrompt(x)).toString());
+
+      result[x] = new String(response);
+    }
+
+    return result;
   }
 }

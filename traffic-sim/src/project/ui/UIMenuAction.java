@@ -1,5 +1,5 @@
 package project.ui;
 
-public interface UIMenuAction {
-  public void run();
+public abstract interface UIMenuAction {
+  public abstract void run();
 }

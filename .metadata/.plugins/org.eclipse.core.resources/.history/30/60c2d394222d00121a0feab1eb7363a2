@@ -1,0 +1,16 @@
+package project.main;
+
+import project.ui.PopupUI;
+
+/**
+ * A static class to demonstrate the visualization aspect of
+ * simulation.
+ */
+public class Main {
+	public static void main(String[] args) {
+		UI ui = new PopupUI();
+		
+		Control control = new Control(UIFactory.ui());
+		control.run();
+	}
+}

@@ -1,0 +1,74 @@
+package project.model;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import project.util.Animator;
+
+public class Model extends Observable
+{
+  private List<Agent> _agents;
+  private Animator _animator;
+  private boolean _disposed;
+  private double _time;
+
+  public Model(AnimatorBuilder builder)
+  {
+    if (builder == null) {
+      builder = new NullAnimatorBuilder();
+    }
+    _agents = new ArrayList();
+    setup(builder);
+    _animator = builder.getAnimator();
+    super.addObserver(_animator);
+  }
+
+  public void run(int duration)
+  {
+    if (_disposed)
+      throw new IllegalStateException();
+    for (int i = 0; i < duration; i++) {
+      _time += 1.0D;
+      Agent[] agents_copy = (Agent[])_agents.toArray(new Agent[0]);
+      for (Agent a : agents_copy) {
+        a.run(_time);
+      }
+      super.setChanged();
+      super.notifyObservers();
+    }
+  }
+
+  public void dispose()
+  {
+    _animator.dispose();
+    _disposed = true;
+  }
+
+  public List<Agent> getAgents() {
+    return _agents;
+  }
+
+  private void setup(AnimatorBuilder builder)
+  {
+    int rows = MP.getRows();
+    int columns = MP.getColumns();
+
+    Intersection[][] intersection = new Intersection[rows][columns];
+
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
+        intersection[i][j] = new Intersection();
+        builder.addLight(intersection[i][j].getEWLight(), i, j);
+        _agents.add(intersection[i][j]);
+      }
+
+    }
+
+    GridFactory.newInstance(MP.isAlternating, this, (ArrayList)_agents, intersection, builder);
+  }
+
+  public double getTime()
+  {
+    return _time;
+  }
+}

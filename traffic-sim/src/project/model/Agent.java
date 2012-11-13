@@ -4,6 +4,5 @@ package project.model;
  * Interface for active model objects.
  */
 public interface Agent {
-  public void run(double time);
+  public abstract void run(double paramDouble);
 }
-

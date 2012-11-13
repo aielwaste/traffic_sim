@@ -1,12 +1,17 @@
 package project.main;
 
+import project.ui.PopupUI;
+import project.ui.UI;
+
 /**
- * External entry point for application
+ * A static class to demonstrate the visualization aspect of
+ * simulation.
  */
 public class Main {
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		UI ui = new PopupUI();
+		
+		Control control = new Control(ui);
+		control.run();
 	}
-
 }

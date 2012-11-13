@@ -1,0 +1,5 @@
+package project.model;
+
+public abstract interface Grid
+{
+}

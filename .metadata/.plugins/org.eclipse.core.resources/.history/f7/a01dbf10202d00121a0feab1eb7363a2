@@ -1,0 +1,77 @@
+package project.model;
+
+import java.util.List;
+
+public class Intersection implements Agent {
+  private Light ewLight;
+  private Light nsLight;
+  private double length = Math.random() * (MP.maxIntersectionLength - MP.minIntersectionLength) + MP.minIntersectionLength;
+
+  private double greenDurationNS = Math.random() * (MP.maxGreenLightTime - MP.minGreenLightTime) + MP.minGreenLightTime;
+  private double yellowDurationNS = Math.random() * (MP.maxYellowLightTime - MP.minYellowLightTime) + MP.minYellowLightTime;
+  private double greenDurationEW = Math.random() * (MP.maxGreenLightTime - MP.minGreenLightTime) + MP.minGreenLightTime;
+  private double yellowDurationEW = Math.random() * (MP.maxYellowLightTime - MP.minYellowLightTime) + MP.minYellowLightTime;
+
+  public Intersection() {
+    ewLight = new Light(length);
+    nsLight = new Light(length);
+  }
+
+  public Intersection(Light x) {
+    ewLight = x;
+    nsLight = new Light(length);
+  }
+
+  public void run(double time) {
+    double whereInCycle = time % (greenDurationNS + yellowDurationNS + greenDurationEW + yellowDurationEW);
+
+    LightColor ewLightColor = LightColor.GREEN;
+    LightColor nsLightColor = LightColor.RED;
+    
+    boolean ewLightState = true;;
+    boolean nsLightState = !ewLightState;
+    
+    if (whereInCycle <= greenDurationEW + yellowDurationEW) {
+
+      if (whereInCycle <= greenDurationEW) {
+        ewLightColor = LightColor.GREEN;
+      }
+      else {
+        ewLightColor = LightColor.YELLOW;
+      }
+
+      nsLightColor = LightColor.RED;
+    }
+    else {
+      ewLightState = false;
+      nsLightState = !ewLightState;
+
+      if (whereInCycle - (greenDurationEW + yellowDurationEW) <= greenDurationNS) {
+        nsLightColor = LightColor.GREEN;
+      }
+      else {
+        nsLightColor = LightColor.YELLOW;
+      }
+
+      ewLightColor = LightColor.RED;
+    }
+
+    if ((!ewLight.getCars().isEmpty()) || (!nsLight.getCars().isEmpty())) {
+      ewLightState = false;
+      nsLightState = false;
+    }
+
+    ewLight.run(time, ewLightState, ewLightColor);
+    nsLight.run(time, nsLightState, nsLightColor);
+  }
+
+  public Light getEWLight()
+  {
+    return ewLight;
+  }
+
+  public Light getNSLight()
+  {
+    return nsLight;
+  }
+}

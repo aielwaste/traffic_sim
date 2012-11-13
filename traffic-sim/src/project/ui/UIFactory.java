@@ -1,10 +1,10 @@
 package project.ui;
 
-public class UIFactory {
-  private UIFactory() {}
-  static private UI _UI = new PopupUI();
-  //static private UI _UI = new TextUI();
-  static public UI ui () {
+public class UIFactory
+{
+  private static UI _UI = new PopupUI();
+
+  public static UI ui() {
     return _UI;
   }
 }

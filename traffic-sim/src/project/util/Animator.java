@@ -5,8 +5,6 @@ import java.util.Observer;
 /**
  * An interface for displaying simulations.
  */
-public interface Animator extends Observer {
-  public void dispose();
+public abstract interface Animator extends Observer {
+  public abstract void dispose();
 }
-
-

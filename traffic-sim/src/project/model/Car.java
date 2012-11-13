@@ -1,5 +1,7 @@
 package project.model;
 
+import java.awt.Color;
+
 /**
  * A car remembers its position from the beginning of its road.
  * Cars have random velocity and random movement pattern:
@@ -7,27 +9,128 @@ package project.model;
  * to the beginning of the road, or reverses its direction.
  */
 public class Car implements Agent {
-  Car() { } // Created only by this package
+  private String state = "";
+  private CarHandler observer;
+  private double _position = 0.0D;
+  private double _carLength = (int)(MP.maxCarLength * Math.random()) + MP.minCarLength;
+  private double _maxVelocity = Math.random() * (MP.maxVelocity - MP.minVelocity) + MP.minVelocity;
+  private double _velocity = _maxVelocity;
+  private double _breakDistance = Math.random() * (MP.maxBreakDistance - MP.minBreakDistance) + MP.minBreakDistance;
+  private double _stopDistance = Math.random() * (MP.maxStopDistance - MP.minStopDistance) + MP.minStopDistance;
 
-  private boolean _backAndForth = Math.round(Math.random())==1 ? true : false;
-  private double _position = 0;
-  private double _velocity = (int) Math.ceil(Math.random() * MP.maxVelocity);
-  private java.awt.Color _color = new java.awt.Color((int)Math.ceil(Math.random()*255),(int)Math.ceil(Math.random()*255),(int)Math.ceil(Math.random()*255));
-  
-  public double getPosition() {
+  private Color _color = new Color((int)Math.ceil(Math.random() * 255.0D), (int)Math.ceil(Math.random() * 255.0D), (int)Math.ceil(Math.random() * 255.0D));
+
+	
+  Car() {
+	  _maxVelocity = (Math.random() * (MP.maxVelocity - MP.minVelocity) + MP.minVelocity);
+  } // Created only by this package
+
+  public double getPosition()
+  {
     return _position;
   }
-  public java.awt.Color getColor() {
+
+  public double getNextPosition() {
+    return this._position += _velocity;
+  }
+
+  public double getVelocity() {
+    return _velocity;
+  }
+
+  public Color getColor() {
     return _color;
   }
-  public void run(double time) {
-    if (_backAndForth) {
-      if (((_position + _velocity) < 0) || ((_position + _velocity) > (MP.roadLength-MP.carLength)))
-        _velocity *= -1;
-    } else {
-      if ((_position + _velocity) > (MP.roadLength-MP.carLength))
-        _position = 0;
-    }
+
+  public void run(double time)
+  {
+    checkTailGate();
+    checkPosOnRoad();
+
     _position += _velocity;
+  }
+
+  public void checkTailGate()
+  {
+    double distanceBetween = observer.getDistancetoNextObstacle(this);
+
+    if (distanceBetween <= _breakDistance)
+    {
+      if (distanceBetween <= _stopDistance) {
+        _velocity *= MP.stopFactor;
+      }
+      else {
+        _velocity *= MP.breakFactor;
+
+        if (_velocity >= distanceBetween) {
+          _velocity = MP.minVelocity;
+        }
+
+      }
+
+    }
+    else if (_velocity == 0.0D)
+      _velocity = (_maxVelocity / 2.0D);
+    else
+      _velocity = _maxVelocity;
+  }
+
+  public void checkPosOnRoad()
+  {
+    if (getPosition() > observer.getLength() - _carLength)
+    {
+      CarHandler nextCarHandler = observer.getObservingCarHandlerList().getNext(observer);
+
+      if (nextCarHandler != observer)
+      {
+        if (nextCarHandler.getState())
+        {
+          observer.remove(this);
+          nextCarHandler.accept(this);
+          _position = 0.0D;
+        }
+      }
+      else
+      {
+        _velocity = 0.0D;
+        observer.remove(this);
+      }
+    }
+  }
+
+  public String getState()
+  {
+    return state;
+  }
+
+  public void addObserver(CarHandler carhandler) {
+    observer = carhandler;
+  }
+
+  public CarHandler getOberver() {
+    return observer;
+  }
+
+  public void removeObserver() {
+    observer = null;
+  }
+
+  public double getCarLength()
+  {
+    return _carLength;
+  }
+
+  public double getBreakDistance()
+  {
+    return _breakDistance;
+  }
+
+  public void setPosition(double pos) {
+    _position = pos;
+  }
+
+  public void setSpeed(double speed)
+  {
+    _maxVelocity = speed;
   }
 }
