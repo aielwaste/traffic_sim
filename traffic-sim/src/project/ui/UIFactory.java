@@ -1,7 +1,6 @@
 package project.ui;
 
-public class UIFactory
-{
+public class UIFactory {
   private static UI _UI = new PopupUI();
 
   public static UI ui() {

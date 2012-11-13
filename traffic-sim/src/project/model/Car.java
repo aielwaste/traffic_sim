@@ -20,13 +20,12 @@ public class Car implements Agent {
 
   private Color _color = new Color((int)Math.ceil(Math.random() * 255.0D), (int)Math.ceil(Math.random() * 255.0D), (int)Math.ceil(Math.random() * 255.0D));
 
-	
+
   Car() {
 	  _maxVelocity = (Math.random() * (MP.maxVelocity - MP.minVelocity) + MP.minVelocity);
   } // Created only by this package
 
-  public double getPosition()
-  {
+  public double getPosition() {
     return _position;
   }
 
@@ -42,20 +41,16 @@ public class Car implements Agent {
     return _color;
   }
 
-  public void run(double time)
-  {
+  public void run(double time) {
     checkTailGate();
     checkPosOnRoad();
-
     _position += _velocity;
   }
 
-  public void checkTailGate()
-  {
+  public void checkTailGate() {
     double distanceBetween = observer.getDistancetoNextObstacle(this);
 
-    if (distanceBetween <= _breakDistance)
-    {
+    if (distanceBetween <= _breakDistance) {
       if (distanceBetween <= _stopDistance) {
         _velocity *= MP.stopFactor;
       }
@@ -65,41 +60,35 @@ public class Car implements Agent {
         if (_velocity >= distanceBetween) {
           _velocity = MP.minVelocity;
         }
-
       }
-
     }
-    else if (_velocity == 0.0D)
+    else if (_velocity == 0.0D) {
       _velocity = (_maxVelocity / 2.0D);
-    else
+    }
+    else {
       _velocity = _maxVelocity;
+    }
   }
 
-  public void checkPosOnRoad()
-  {
-    if (getPosition() > observer.getLength() - _carLength)
-    {
+  public void checkPosOnRoad() {
+    if (getPosition() > observer.getLength() - _carLength) {
       CarHandler nextCarHandler = observer.getObservingCarHandlerList().getNext(observer);
 
-      if (nextCarHandler != observer)
-      {
-        if (nextCarHandler.getState())
-        {
+      if (nextCarHandler != observer) {
+        if (nextCarHandler.getState()) {
           observer.remove(this);
           nextCarHandler.accept(this);
           _position = 0.0D;
         }
       }
-      else
-      {
+      else {
         _velocity = 0.0D;
         observer.remove(this);
       }
     }
   }
 
-  public String getState()
-  {
+  public String getState() {
     return state;
   }
 
@@ -115,13 +104,11 @@ public class Car implements Agent {
     observer = null;
   }
 
-  public double getCarLength()
-  {
+  public double getCarLength() {
     return _carLength;
   }
 
-  public double getBreakDistance()
-  {
+  public double getBreakDistance() {
     return _breakDistance;
   }
 
@@ -129,8 +116,7 @@ public class Car implements Agent {
     _position = pos;
   }
 
-  public void setSpeed(double speed)
-  {
+  public void setSpeed(double speed) {
     _maxVelocity = speed;
   }
 }

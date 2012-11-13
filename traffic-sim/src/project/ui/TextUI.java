@@ -52,7 +52,6 @@ String response = getResponse();
     } catch (NumberFormatException e) {
       selection = 0;
     }
-
     menu.runAction(selection);
   }
 
@@ -61,8 +60,7 @@ String response = getResponse();
 
     String[] result = new String[form.size()];
 
-    for (int x = 0; x < form.size(); x++)
-    {
+    for (int x = 0; x < form.size(); x++) {
       System.out.print("Enter " + form.getPrompt(x) + ": ");
       String response = scan.next();
 

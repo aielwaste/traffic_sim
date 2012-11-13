@@ -2,26 +2,30 @@ package project.model;
 
 import project.util.Animator;
 
-/** 
+/**
  * An interface for building a {@link Animator} for this {@link Model}.
  */
 public abstract interface AnimatorBuilder {
+
   /**
    *  Returns the {@link Animator}.
    *  This method may be called only once; subsequent calls throw an
    *  {@link IllegalStateException}.
    */
   public abstract Animator getAnimator();
+
   /**
    *  Add the {@link Light} to the display at position <code>i,j</code>.
    */
   public abstract void addLight(Light d, int i, int j);
+
   /**
    *  Add the horizontal {@link Road} to the display, west of position <code>i,j</code>.
    *  If <code>eastToWest</code> is true, then road position 0 is the eastmost position.
    *  If <code>eastToWest</code> is false, then road position 0 is the westmost position.
    */
   public abstract void addHorizontalRoad(Road l, int i, int j, boolean eastToWest);
+
   /**
    *  Add the vertical {@link Road} to the display, north of position <code>i,j</code>.
    *  If <code>southToNorth</code> is true, then road position 0 is the southmost position.

@@ -7,12 +7,12 @@ import java.util.Observable;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-  
+
 /**
  * A swing implementation of {@link Animator}, using a {@link JFrame}
  * to display the animation.  The {@link JFrame} is created and
  * displayed by the constructor.
- * 
+ *
  * Calls to <code>update()</code> result in a call to
  * <code>painter.paint()</code>.  This is executed in the swing
  * thread while the main thread is paused for <code>delay</code>
@@ -21,12 +21,12 @@ import javax.swing.SwingUtilities;
 public class SwingAnimator implements Animator {
   // The following fields are manipulated by the main program thread
   private int _delay;
-  
+
   // The following fields are manipulated by the swing thread
   private JFrame _frame; // Swing representation of an OS window
   private ContentPane _content; // A paintable component
   private boolean _disposed = false; // If true, then die
-  
+
   /**
    * Creates and displays a {@link JFrame} for the animation.
    * @param name  The name to be displayed on the graphical window.
@@ -68,7 +68,7 @@ public class SwingAnimator implements Animator {
   public void update(final Observable model, Object ignored) {
     if (_disposed)
       throw new IllegalStateException();
-    
+
     // Redraw the window
     SwingUtilities.invokeLater(new Runnable() {
         public void run() {
@@ -76,7 +76,7 @@ public class SwingAnimator implements Animator {
           // where g is an appropriate graphics argument.
           _content.repaint();
         }});
-    
+
     // Delay the main thread
     try {
         Thread.currentThread();
@@ -93,7 +93,7 @@ public class SwingAnimator implements Animator {
     private int _width;
     private int _height;
     private SwingAnimatorPainter _painter;
-    
+
     ContentPane(SwingAnimatorPainter painter, int width, int height) {
       _painter = painter;
       _width = width;
@@ -103,9 +103,9 @@ public class SwingAnimator implements Animator {
       setOpaque(true);
       setBackground(Color.WHITE);
     }
-    
+
     @SuppressWarnings("unused")
-	void setPainter(SwingAnimatorPainter painter) {
+	  void setPainter(SwingAnimatorPainter painter) {
       _painter = painter;
     }
 
@@ -113,7 +113,7 @@ public class SwingAnimator implements Animator {
       // This test is necessary because the swing thread may call this
       // method before the simulation calls SwingAnimator.update()
       if (_painter != null ) {
-        // The clearRect is necessary, since JPanel is lightweight
+      // The clearRect is necessary, since JPanel is lightweight
         g.clearRect(0, 0, _width, _height);
         _painter.paint(g);
       }

@@ -17,7 +17,7 @@ abstract class Translator {
     _tScaleFactor = tScaleFactor;
   }
   int scale(double arg) {
-    return (int) Math.ceil(arg * _tScaleFactor); 
+    return (int) Math.ceil(arg * _tScaleFactor);
   }
   abstract int getX(double x, double y, double width, double height);
   abstract int getY(double x, double y, double width, double height);
@@ -29,6 +29,7 @@ class TranslatorWE extends Translator {
   TranslatorWE(double tX, double tY, double tWidth, double tHeight, double tScaleFactor) {
     super(tX, tY, tWidth, tHeight, tScaleFactor);
   }
+
   int getX(double x, double y, double width, double height) { return scale(_tX+x); }
   int getY(double x, double y, double width, double height) { return scale(_tY+y); }
   int getWidth(double width, double height) { return scale(width); }
@@ -64,4 +65,3 @@ class TranslatorSN extends Translator {
   int getWidth(double width, double height) { return scale(height); }
   int getHeight(double width, double height)  { return scale(width); }
 }
-

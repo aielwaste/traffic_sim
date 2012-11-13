@@ -1,32 +1,26 @@
 package project.model;
 
-public class CarHandlerList
-{
+public class CarHandlerList {
   private CarHandlerNode list;
   private Model observer;
 
-  public CarHandlerList()
-  {
+  public CarHandlerList() {
     list = null;
   }
 
-  public CarHandlerList(boolean direction, Model m, boolean carsmove)
-  {
+  public CarHandlerList(boolean direction, Model m, boolean carsmove) {
     list = null;
     observer = m;
   }
 
-  public void accept(Car car, Model m)
-  {
+  public void accept(Car car, Model m) {
     if (list == null) {
       return;
     }
-
     list.carhandler.accept(car);
   }
 
-  public void insert(CarHandler carhandler)
-  {
+  public void insert(CarHandler carhandler) {
     CarHandlerNode node = new CarHandlerNode(carhandler);
 
     if (list == null) {
@@ -34,11 +28,11 @@ public class CarHandlerList
     }
     else {
       CarHandlerNode current = list;
+
       while (current.next != null)
         current = current.next;
       current.next = node;
     }
-
     carhandler.addObserver(this);
   }
 
@@ -51,7 +45,6 @@ public class CarHandlerList
       result = result + current.carhandler + "\n";
       current = current.next;
     }
-
     return result;
   }
 
@@ -60,47 +53,36 @@ public class CarHandlerList
     CarHandlerNode current = null;
     CarHandlerNode previous = null;
 
-    if (list == null)
-    {
+    if (list == null) {
       list = node;
     }
-    else
-    {
+    else {
       current = list;
       previous = list;
 
-      if (node.carhandler.horCompareTo(current.carhandler) < 1)
-      {
+      if (node.carhandler.horCompareTo(current.carhandler) < 1) {
         list = node;
         node.next = current;
       }
-      else
-      {
-        while (current != null)
-        {
-          if (node.carhandler.horCompareTo(current.carhandler) < 1)
-          {
+      else {
+        while (current != null) {
+          if (node.carhandler.horCompareTo(current.carhandler) < 1) {
             previous.next = node;
             node.next = current;
-
             break;
           }
           previous = current;
           current = current.next;
         }
-
-        if (current == null)
-        {
+        if (current == null) {
           previous.next = node;
         }
       }
     }
-
     carhandler.addObserver(this);
   }
 
-  public void delete(CarHandler carhandler)
-  {
+  public void delete(CarHandler carhandler) {
     CarHandlerNode current = null;
     CarHandlerNode previous = null;
     CarHandlerNode node = new CarHandlerNode(carhandler);
@@ -108,40 +90,31 @@ public class CarHandlerList
     previous = list;
     current = previous.next;
 
-    if (previous.carhandler.horCompareTo(node.carhandler) == 0)
-    {
+    if (previous.carhandler.horCompareTo(node.carhandler) == 0) {
       list = current;
     }
-    else
-    {
-      while (current != null)
-      {
-        if (current.carhandler.horCompareTo(node.carhandler) == 0)
-        {
+    else {
+      while (current != null) {
+        if (current.carhandler.horCompareTo(node.carhandler) == 0) {
           if (current.next == null) {
             previous.next = null; break;
           }
           previous.next = current.next;
           break;
         }
-
         previous = current;
         current = current.next;
       }
-
     }
-
     carhandler.removeObserver();
   }
 
-  public CarHandler getNext(CarHandler carhandler)
-  {
+  public CarHandler getNext(CarHandler carhandler) {
     CarHandlerNode current = null;
 
     current = list;
 
-    while (current != null)
-    {
+    while (current != null) {
       if (current.next == null) {
         return current.carhandler;
       }
@@ -154,42 +127,35 @@ public class CarHandlerList
     return carhandler;
   }
 
-  public CarHandler getPrev(CarHandler carhandler)
-  {
+  public CarHandler getPrev(CarHandler carhandler) {
     CarHandlerNode prev = list;
     CarHandlerNode current = prev.next;
 
     if (prev.carhandler == carhandler) {
       return prev.carhandler;
     }
-    while (current != null)
-    {
+    while (current != null) {
       if (current.next == null) {
         return prev.carhandler;
       }
       if (current.carhandler == carhandler) {
         return prev.carhandler;
       }
-
       prev = current;
       current = current.next;
     }
-
     return carhandler;
   }
 
-  Model getObserver()
-  {
+  Model getObserver() {
     return observer;
   }
 
-  private class CarHandlerNode
-  {
+  private class CarHandlerNode {
     public CarHandler carhandler;
     public CarHandlerNode next;
 
-    public CarHandlerNode(CarHandler r)
-    {
+    public CarHandlerNode(CarHandler r) {
       carhandler = r;
       next = null;
     }
