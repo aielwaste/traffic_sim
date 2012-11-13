@@ -4,3 +4,10 @@
 *.jar
 *.war
 *.ear
+
+bin
+.gitignore
+.gitmodules
+.tmproperties
+.DS_Store
+.metadata
