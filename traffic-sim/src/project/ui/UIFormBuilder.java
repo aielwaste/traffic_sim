@@ -6,7 +6,9 @@ import java.util.List;
 public final class UIFormBuilder {
   private final List<UIForm.Pair> _menu = new ArrayList<>();
 
-  public void add(String prompt, UIFormTest test) { _menu.add(new UIForm.Pair(prompt, test)); }
+  public void add(String prompt, UIFormTest test) {
+    _menu.add(new UIForm.Pair(prompt, test)); 
+  }
 
   public UIForm toUIForm(String heading) {
     if (null == heading) {

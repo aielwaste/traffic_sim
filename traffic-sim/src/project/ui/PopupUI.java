@@ -2,20 +2,23 @@ package project.ui;
 
 import javax.swing.JOptionPane;
 
-public final class PopupUP implements UI {
+public final class PopupUI implements UI {
+  @Override
   public void displayMessage(String message) {
     JOptionPane.showMessageDialog(null, message);
   }
 
+  @Override
   public void displayError(String message) {
     JOptionPane.showMessageDialog(null, message, "Error", 0);
   }
 
+  @Override
   public void processMenu(UIMenu menu) {
     StringBuilder b = new StringBuilder();
     b.append(menu.getHeading());
     b.append("\n");
-    b.append("Enter choice by number:");
+    b.append("Enter Choice By Number:");
     b.append("\n");
 
     for (int i = 1; i < menu.size(); i++) {
@@ -37,6 +40,7 @@ public final class PopupUP implements UI {
     menu.runAction(selection);
   }
 
+  @Override
   public String[] processForm(UIForm form) {
     String[] result = new String[form.size()];
 

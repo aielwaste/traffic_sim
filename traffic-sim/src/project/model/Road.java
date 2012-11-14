@@ -3,9 +3,7 @@ package project.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Road
-  implements CarHandler
-{
+public class Road implements CarHandler {
   private double length = Math.random() * (MP.maxroadLength - MP.minroadLength) + MP.minroadLength;
   private int xposition;
   private int yposition;
@@ -13,15 +11,13 @@ public class Road
   private CarHandlerList observer;
   private List<Car> _cars = new ArrayList<>();
 
-  Road(int x, int y, boolean direction)
-  {
+  Road(int x, int y, boolean direction) {
     xposition = x;
     yposition = y;
     trafficDirection = direction;
   }
 
-  public void accept(Car d)
-  {
+  public void accept(Car d) {
     if (d == null) throw new IllegalArgumentException();
     _cars.add(d);
     d.addObserver(this);
@@ -47,8 +43,7 @@ public class Road
     return trafficDirection;
   }
 
-  public int vertCompareTo(Road that)
-  {
+  public int vertCompareTo(Road that) {
     if (yposition < that.yposition) {
       return -1;
     }
@@ -58,8 +53,7 @@ public class Road
     return 0;
   }
 
-  public int horCompareTo(CarHandler that)
-  {
+  public int horCompareTo(CarHandler that) {
     if (xposition < that.getXPos()) {
       return -1;
     }
@@ -81,22 +75,18 @@ public class Road
     return observer;
   }
 
-  public int vertCompareTo(CarHandler that)
-  {
+  public int vertCompareTo(CarHandler that) {
     return 0;
   }
 
-  public double getDistancetoNextObstacle(Car car)
-  {
-    if ((_cars.size() > 1) && (_cars.indexOf(car) != 0))
-    {
+  public double getDistancetoNextObstacle(Car car) {
+    if ((_cars.size() > 1) && (_cars.indexOf(car) != 0)) {
       Car comparingCar = (Car)_cars.get(_cars.indexOf(car) - 1);
 
       return comparingCar.getPosition() - car.getPosition() - car.getCarLength();
     }
 
-    if ((length - car.getPosition() - car.getCarLength() <= car.getBreakDistance()) && (!observer.getNext(this).getState()))
-    {
+    if ((length - car.getPosition() - car.getCarLength() <= car.getBreakDistance()) && (!observer.getNext(this).getState())) {
       return length - car.getPosition() - car.getCarLength();
     }
 
@@ -106,8 +96,7 @@ public class Road
     return (1.0D / 0.0D);
   }
 
-  public boolean getState()
-  {
+  public boolean getState() {
     return true;
   }
 

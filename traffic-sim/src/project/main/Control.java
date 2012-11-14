@@ -13,280 +13,304 @@ import project.ui.UIMenuAction;
 import project.ui.UIMenuBuilder;
 
 class Control {
-  private static final int EXITED = 0;
-  private static final int EXIT = 1;
-  private static final int SETTINGS = 3;
-  private static final int RUN = 2;
-  private UIMenu[] _menus;
-  private int _state;
-  private UIForm _setSingleDouble;
-  private UIForm _setDoubleDouble;
-  private UIForm _setDoubleInt;
-  private UIForm _setPattern;
-  private UIFormTest _doubleTest;
-  private UIFormTest _numberTest;
-  private UI _ui;
+	@SuppressWarnings("unused")
+	private static final int EXITED = 0;
+	@SuppressWarnings("unused")
+	private static final int EXIT = 1;
+	@SuppressWarnings("unused")
+	private static final int SETTINGS = 3;
+	@SuppressWarnings("unused")
+	private static final int RUN = 2;
+	private UIMenu[] _menus;
+	private int _state;
+	private UIForm _setSingleDouble;
+	private UIForm _setDoubleDouble;
+	private UIForm _setDoubleInt;
+	private UIForm _setPattern;
+	private UIFormTest _doubleTest;
+	private UIFormTest _numberTest;
+	private UI _ui;
 
-  Control(UI ui) {
-    _ui = ui;
-    _menus = new UIMenu[4];
-    _state = 2;
-    addSTART(2);
-    addSETTINGS(3);
-    addEXIT(1);
+	Control(UI ui) {
+		_ui = ui;
+		_menus = new UIMenu[4];
+		_state = 2;
+		addSTART(2);
+		addSETTINGS(3);
+		addEXIT(1);
 
-    _numberTest = new UIFormTest() {
-      public boolean run(String input) {
-        try {
-          Integer.parseInt(input);
-          return true; } catch (NumberFormatException e) {
-        }
-        return false;
-      }
-    };
-    _doubleTest = new UIFormTest() {
-      public boolean run(String input) {
-        try {
-          Double.parseDouble(input);
-          return true; } catch (NumberFormatException e) {
-        }
-        return false;
-      }
-    };
-    UIFormBuilder singleDouble = new UIFormBuilder();
-    singleDouble.add("value:", _doubleTest);
-    _setSingleDouble = singleDouble.toUIForm("Enter value: ");
+		_numberTest = new UIFormTest() {
+			@Override
+			public boolean run(String input) {
+				try {
+					Integer.parseInt(input);
+					return true;
+				} catch (NumberFormatException e) {
+				}
+				return false;
+			}
+		};
+		_doubleTest = new UIFormTest() {
+			@Override
+			public boolean run(String input) {
+				try {
+					Double.parseDouble(input);
+					return true;
+				} catch (NumberFormatException e) {
+				}
+				return false;
+			}
+		};
 
-    UIFormBuilder singleDouble2 = new UIFormBuilder();
-    singleDouble2.add("value (default value is " + MP.getRuntime() + "):", _doubleTest);
-    _setSingleDouble = singleDouble2.toUIForm("Enter value: ");
+		UIFormBuilder singleDouble = new UIFormBuilder();
+		singleDouble.add("value:", _doubleTest);
+		_setSingleDouble = singleDouble.toUIForm("Enter value: ");
 
-    UIFormBuilder doubleInt = new UIFormBuilder();
-    doubleInt.add("numbers of rows (default value is " + MP.getRows() + "):", _numberTest);
-    doubleInt.add("numbers of columns (default value is " + MP.getColumns() + "):", _numberTest);
-    _setDoubleInt = doubleInt.toUIForm("Enter value: ");
+		UIFormBuilder singleDouble2 = new UIFormBuilder();
+		singleDouble2.add("value (default value is " + MP.getRuntime() + "):",
+				_doubleTest);
+		_setSingleDouble = singleDouble2.toUIForm("Enter value: ");
 
-    UIFormBuilder setPattern = new UIFormBuilder();
-    setPattern.add("1 for simple pattern and 2 for alternating: ", _numberTest);
-    _setPattern = setPattern.toUIForm("Enter value: ");
+		UIFormBuilder doubleInt = new UIFormBuilder();
+		doubleInt.add("numbers of rows (default value is " + MP.getRows()
+				+ "):", _numberTest);
+		doubleInt.add("numbers of columns (default value is " + MP.getColumns()
+				+ "):", _numberTest);
+		_setDoubleInt = doubleInt.toUIForm("Enter value: ");
 
-    UIFormBuilder setDoubleDouble = new UIFormBuilder();
-    setDoubleDouble.add("a minimum: ", _numberTest);
-    setDoubleDouble.add("a maximum: ", _numberTest);
-    _setDoubleDouble = setDoubleDouble.toUIForm(": ");
-  }
+		UIFormBuilder setPattern = new UIFormBuilder();
+		setPattern.add("1 for simple pattern and 2 for alternating: ",
+				_numberTest);
+		_setPattern = setPattern.toUIForm("Enter value: ");
 
-  void run() {
-    try {
-      while (_state != 0)
-        _ui.processMenu(_menus[_state]);
-    }
-    catch (UIError e) {
-      _ui.displayError("UI closed");
-    }
-  }
+		UIFormBuilder setDoubleDouble = new UIFormBuilder();
+		setDoubleDouble.add("a minimum: ", _numberTest);
+		setDoubleDouble.add("a maximum: ", _numberTest);
+		_setDoubleDouble = setDoubleDouble.toUIForm(": ");
+	}
 
-  private void addSTART(int stateNum) {
-    UIMenuBuilder m = new UIMenuBuilder();
+	void run() {
+		try {
+			while (_state != 0)
+				_ui.processMenu(_menus[_state]);
+		} catch (UIError e) {
+			_ui.displayError("UI closed");
+		}
+	}
 
-    m.add("Default", new UIMenuAction()
-    {
-      public void run()
-      {
-      }
-    });
-    m.add("Run simulation", new UIMenuAction()
-    {
-      public void run() {
-        _state = 2;
-        Model m = new Model(new SwingAnimatorBuilder());
-        m.run(MP.simulationRuntime);
-        m.dispose();
-      }
-    });
-    m.add("Change simulation parameters", new UIMenuAction()
-    {
-      public void run() {
-        _state = 3;
-      }
-    });
-    m.add("Exit", new UIMenuAction()
-    {
-      public void run() {
-        _state = 1;
-      }
-    });
-    _menus[stateNum] = m.toUIMenu("Simulation City");
-  }
+	private void addSTART(int stateNum) {
+		UIMenuBuilder m = new UIMenuBuilder();
 
-  private void addSETTINGS(int stateNum) {
-    UIMenuBuilder m = new UIMenuBuilder();
+		m.add("Default", new UIMenuAction() {
+			@Override
+			public void run() {
+			}
+		});
 
-    m.add("Default", new UIMenuAction()
-    {
-      public void run() {
-        _ui.displayError("doh!");
-      }
-    });
-    m.add("Show current values", new UIMenuAction()
-    {
-      public void run()
-      {
-        StringBuilder b = MP.returnCurrentValues();
+		m.add("Run simulation", new UIMenuAction() {
+			@Override
+			public void run() {
+				_state = 2;
+				Model m = new Model(new SwingAnimatorBuilder());
+				m.run(MP.simulationRuntime);
+				m.dispose();
+			}
+		});
 
-        _ui.displayMessage(b.toString());
-      }
-    });
-    m.add("Simulation time step", new UIMenuAction()
-    {
-      public void run()
-      {
-        String[] result1 = _ui.processForm(_setSingleDouble);
+		m.add("Change simulation parameters", new UIMenuAction() {
+			@Override
+			public void run() {
+				_state = 3;
+			}
+		});
 
-        MP.setTimeStep(Double.parseDouble(result1[0]));
-      }
-    });
-    m.add("Simulation runtime", new UIMenuAction()
-    {
-      public void run()
-      {
-        String[] result1 = _ui.processForm(_setSingleDouble);
+		m.add("Exit", new UIMenuAction() {
+			@Override
+			public void run() {
+				_state = 1;
+			}
+		});
+		_menus[stateNum] = m.toUIMenu("Simulation City");
+	}
 
-        MP.setRuntime(Double.parseDouble(result1[0]));
-      }
-    });
-    m.add("Grid size", new UIMenuAction()
-    {
-      public void run()
-      {
-        String[] result1 = _ui.processForm(_setDoubleInt);
+	private void addSETTINGS(int stateNum) {
+		UIMenuBuilder m = new UIMenuBuilder();
 
-        MP.setGridSize(Integer.parseInt(result1[0]), Integer.parseInt(result1[1]));
-      }
-    });
-    m.add("Set traffic pattern", new UIMenuAction() {
-      public void run() {
-        String[] result1 = _ui.processForm(_setPattern);
+		m.add("Default", new UIMenuAction() {
+			@Override
+			public void run() {
+				_ui.displayError("doh!");
+			}
+		});
 
-        if (Integer.parseInt(result1[0]) == 1)
-          MP.setPattern(false);
-        else
-          MP.setPattern(true);
-      }
-    });
-    m.add("Set car entry rate", new UIMenuAction()
-    {
-      public void run()
-      {
-        String[] result1 = _ui.processForm(_setDoubleDouble);
+		m.add("Show current values", new UIMenuAction() {
+			@Override
+			public void run() {
+				StringBuilder b = MP.returnCurrentValues();
+				_ui.displayMessage(b.toString());
+			}
+		});
 
-        MP.setCarEntryRate(Double.parseDouble(result1[0]), Double.parseDouble(result1[1]));
-      }
-    });
-    m.add("Set road lengths", new UIMenuAction()
-    {
-      public void run()
-      {
-        String[] result1 = _ui.processForm(_setDoubleDouble);
+		m.add("Simulation time step", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setSingleDouble);
+				MP.setTimeStep(Double.parseDouble(result1[0]));
+			}
+		});
 
-        MP.setRoadLengths(Double.parseDouble(result1[0]), Double.parseDouble(result1[1]));
-      }
-    });
-    m.add("Set intersection lengths", new UIMenuAction()
-    {
-      public void run()
-      {
-        String[] result1 = _ui.processForm(_setDoubleDouble);
+		m.add("Simulation runtime", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setSingleDouble);
+				MP.setRuntime(Double.parseDouble(result1[0]));
+			}
+		});
 
-        MP.setIntersectionLength(Double.parseDouble(result1[0]), Double.parseDouble(result1[1]));
-      }
-    });
-    m.add("Set car length", new UIMenuAction()
-    {
-      public void run()
-      {
-        String[] result1 = _ui.processForm(_setDoubleDouble);
+		m.add("Grid size", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setDoubleInt);
+				MP.setGridSize(Integer.parseInt(result1[0]),
+						Integer.parseInt(result1[1]));
+			}
+		});
 
-        MP.setCarLength(Double.parseDouble(result1[0]), Double.parseDouble(result1[1]));
-      }
-    });
-    
-    m.add("Set max car velocity", new UIMenuAction() {
-      public void run() {
-        String[] result1 = _ui.processForm(_setSingleDouble);
+		m.add("Set traffic pattern", new UIMenuAction() {
 
-        MP.setCarMaxVel(Double.parseDouble(result1[0]));
-      }
-    });
-    m.add("Set car stop distance", new UIMenuAction()
-    {
-      public void run()
-      {
-        String[] result1 = _ui.processForm(_setDoubleDouble);
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setPattern);
 
-        MP.setCarStopDist(Double.parseDouble(result1[0]), Double.parseDouble(result1[1]));
-      }
-    });
-    m.add("Set car break distance", new UIMenuAction()
-    {
-      public void run()
-      {
-        String[] result1 = _ui.processForm(_setDoubleDouble);
+				if (Integer.parseInt(result1[0]) == 1)
+					MP.setPattern(false);
+				else
+					MP.setPattern(true);
+			}
+		});
 
-        MP.setCarBreakDist(Double.parseDouble(result1[0]), Double.parseDouble(result1[1]));
-      }
-    });
-    m.add("Set traffic light green times", new UIMenuAction()
-    {
-      public void run()
-      {
-        String[] result1 = _ui.processForm(_setDoubleDouble);
+		m.add("Set car entry rate", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setDoubleDouble);
 
-        MP.setGreenTime(Double.parseDouble(result1[0]), Double.parseDouble(result1[1]));
-      }
-    });
-    m.add("Set traffic light yellow times", new UIMenuAction()
-    {
-      public void run()
-      {
-        String[] result1 = _ui.processForm(_setDoubleDouble);
+				MP.setCarEntryRate(Double.parseDouble(result1[0]),
+						Double.parseDouble(result1[1]));
+			}
+		});
 
-        MP.setYellowTime(Double.parseDouble(result1[0]), Double.parseDouble(result1[1]));
-      }
-    });
-    m.add("Reset simulation and return to main menu", new UIMenuAction()
-    {
-      public void run() {
-        MP.reset();
-        _state = 2;
-      }
-    });
-    m.add("Return to main menu", new UIMenuAction()
-    {
-      public void run() {
-        _state = 2;
-      }
-    });
-    _menus[stateNum] = m.toUIMenu("Simple, Flow-Based Traffic Simulation");
-  }
+		m.add("Set road lengths", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setDoubleDouble);
+				MP.setRoadLengths(Double.parseDouble(result1[0]),
+						Double.parseDouble(result1[1]));
+			}
+		});
 
-  private void addEXIT(int stateNum) {
-    UIMenuBuilder m = new UIMenuBuilder();
+		m.add("Set intersection lengths", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setDoubleDouble);
+				MP.setIntersectionLength(Double.parseDouble(result1[0]),
+						Double.parseDouble(result1[1]));
+			}
+		});
 
-    m.add("Default", new UIMenuAction()
-    {
-      public void run() {}
-    });
-    m.add("Yes", new UIMenuAction() {
-      public void run() {
-        _state = 0;
-      }
-    });
-    m.add("No", new UIMenuAction() {
-      public void run() {
-        _state = 2;
-      }
-    });
-    _menus[stateNum] = m.toUIMenu("Are you sure you want to exit?");
-  }
+		m.add("Set car length", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setDoubleDouble);
+				MP.setCarLength(Double.parseDouble(result1[0]),
+						Double.parseDouble(result1[1]));
+			}
+		});
+
+		m.add("Set max car velocity", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setSingleDouble);
+
+				MP.setCarMaxVel(Double.parseDouble(result1[0]));
+			}
+		});
+
+		m.add("Set car stop distance", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setDoubleDouble);
+
+				MP.setCarStopDist(Double.parseDouble(result1[0]),
+						Double.parseDouble(result1[1]));
+			}
+		});
+
+		m.add("Set car break distance", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setDoubleDouble);
+
+				MP.setCarBreakDist(Double.parseDouble(result1[0]),
+						Double.parseDouble(result1[1]));
+			}
+		});
+
+		m.add("Set traffic light green times", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setDoubleDouble);
+				MP.setGreenTime(Double.parseDouble(result1[0]),
+						Double.parseDouble(result1[1]));
+			}
+		});
+
+		m.add("Set traffic light yellow times", new UIMenuAction() {
+			@Override
+			public void run() {
+				String[] result1 = _ui.processForm(_setDoubleDouble);
+
+				MP.setYellowTime(Double.parseDouble(result1[0]),
+						Double.parseDouble(result1[1]));
+			}
+		});
+
+		m.add("Reset simulation and return to main menu", new UIMenuAction() {
+			@Override
+			public void run() {
+				MP.reset();
+				_state = 2;
+			}
+		});
+		m.add("Return to main menu", new UIMenuAction() {
+			@Override
+			public void run() {
+				_state = 2;
+			}
+		});
+		_menus[stateNum] = m.toUIMenu("Simple, Flow-Based Traffic Simulation");
+	}
+
+	private void addEXIT(int stateNum) {
+		UIMenuBuilder m = new UIMenuBuilder();
+
+		m.add("Default", new UIMenuAction() {
+			@Override
+			public void run() {
+			}
+		});
+
+		m.add("Yes", new UIMenuAction() {
+			@Override
+			public void run() {
+				_state = 0;
+			}
+		});
+		m.add("No", new UIMenuAction() {
+			@Override
+			public void run() {
+				_state = 2;
+			}
+		});
+		_menus[stateNum] = m.toUIMenu("Are you sure you want to exit?");
+	}
 }

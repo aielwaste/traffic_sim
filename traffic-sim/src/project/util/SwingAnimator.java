@@ -39,7 +39,7 @@ public class SwingAnimator implements Animator {
     // Create a graphics window and display it
     SwingUtilities.invokeLater(new Runnable() {
         public void run() {
-          _content = new SwingAnimator.ContentPane(painter, width, height); // A paintable component for content
+          _content = new SwingAnimator.ContentPane(painter, width, height);
           _frame = new JFrame();  // An OS window
           _frame.setTitle(name);  // The title of the Frame
           _frame.setDefaultCloseOperation(3);  // End program if Frame is closed
