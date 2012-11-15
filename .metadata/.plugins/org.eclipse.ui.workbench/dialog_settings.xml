@@ -6,18 +6,33 @@
 		<item value="900" key="dialogWidth"/>
 		<item value="563" key="dialogHeight"/>
 		<list key="orderedProviders">
+			<item value="org.eclipse.ui.commands"/>
 		</list>
 		<list key="textArray">
+			<item value="test"/>
 		</list>
 		<list key="orderedElements">
+			<item value="org.eclipse.ui.window.closePerspective(org.eclipse.ui.window.closePerspective.perspectiveId=org.eclipse.jubula.client.ui.rcp.perspectives.ExecutionPerspective)"/>
 		</list>
 		<list key="textEntries">
+			<item value="1"/>
 		</list>
 	</section>
 	<section name="WorkbenchPreferenceDialogSettings">
 		<item value="13" key="DIALOG_Y_ORIGIN"/>
 		<item value="159" key="DIALOG_X_ORIGIN"/>
 	</section>
+	<section name="ZipFileExportWizard">
+		<item value="true" key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID"/>
+		<item value="true" key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID"/>
+		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="/Users/andrewbell8/Desktop/project-src.zip"/>
+		</list>
+	</section>
 	<section name="ImportExportAction">
+		<item value="org.eclipse.ui.wizards.export.ZipFile" key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
 	</section>
 </section>

@@ -627,3 +627,364 @@ java.io.IOException: http://poseidon.gentleware.com/updatesite/ is not a valid r
 	at org.eclipse.equinox.internal.p2.ui.model.RemoteQueriedElement.fetchDeferredChildren(RemoteQueriedElement.java:34)
 	at org.eclipse.ui.progress.DeferredTreeContentManager$1.run(DeferredTreeContentManager.java:235)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:54:05.990
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2012-11-14 07:54:10.697
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at http://poseidon.gentleware.com/updatesite/.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:128)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.io.IOException: http://poseidon.gentleware.com/updatesite/ is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	... 10 more
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1002 2012-11-14 07:54:10.721
+!MESSAGE Unable to read repository at http://poseidon.gentleware.com/updatesite/.
+!STACK 0
+java.io.IOException: http://poseidon.gentleware.com/updatesite/ is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:54:19.263
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2012-11-14 07:54:27.678
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at http://apollo.gentleware.com/updatesite/.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:128)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.io.IOException: http://apollo.gentleware.com/updatesite/ is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	... 10 more
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1002 2012-11-14 07:54:27.678
+!MESSAGE Unable to read repository at http://apollo.gentleware.com/updatesite/.
+!STACK 0
+java.io.IOException: http://apollo.gentleware.com/updatesite/ is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:54:55.285
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.core 4 0 2012-11-14 07:54:59.555
+!MESSAGE Provisioning exception
+!STACK 1
+org.eclipse.equinox.p2.core.ProvisionException: Unable to read repository at http://poseiden.gentleware.com/updatesite/.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:128)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.io.IOException: http://poseiden.gentleware.com/updatesite/ is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	... 10 more
+!SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1002 2012-11-14 07:54:59.555
+!MESSAGE Unable to read repository at http://poseiden.gentleware.com/updatesite/.
+!STACK 0
+java.io.IOException: http://poseiden.gentleware.com/updatesite/ is not a valid repository location.
+	at org.eclipse.equinox.internal.p2.metadata.repository.SimpleMetadataRepositoryFactory.load(SimpleMetadataRepositoryFactory.java:102)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:758)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:651)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.doLoad(LoadMetadataRepositoryJob.java:117)
+	at org.eclipse.equinox.p2.ui.LoadMetadataRepositoryJob.runModal(LoadMetadataRepositoryJob.java:102)
+	at org.eclipse.equinox.internal.p2.ui.sdk.PreloadingRepositoryHandler$2.runModal(PreloadingRepositoryHandler.java:83)
+	at org.eclipse.equinox.p2.operations.ProvisioningJob.run(ProvisioningJob.java:177)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:07.933
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:33.314
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:35.424
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:38.714
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:40.300
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:41.806
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:43.333
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:45.289
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:46.597
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:48.021
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:49.217
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:50.451
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:51.942
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:53.136
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:54.573
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:56.255
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:57.935
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:56:59.899
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:02.082
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:03.486
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:04.843
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:06.309
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:07.630
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:09.070
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:10.983
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:12.531
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:14.221
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:17.093
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:20.054
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:22.737
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:24.363
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:27.719
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:31.217
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:37.234
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:39.616
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:44.441
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:46.322
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:48.269
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:50.180
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:52.003
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:53.803
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:56.165
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:57:59.171
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:02.149
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:03.636
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:05.955
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:07.583
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:09.055
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:10.593
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:11.871
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:13.293
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:15.166
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:17.094
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:18.719
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:20.457
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:21.917
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:23.599
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:25.725
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:27.077
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:28.475
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:29.961
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:31.172
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:32.452
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:34.004
+!MESSAGE Server returned lastModified <= 0 for http://poseidon.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:35.347
+!MESSAGE Server returned lastModified <= 0 for http://apollo.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2012-11-14 07:58:36.601
+!MESSAGE Server returned lastModified <= 0 for http://poseiden.gentleware.com/updatesite/content.jar
+
+!ENTRY org.eclipse.ui 4 4 2012-11-14 08:33:05.890
+!MESSAGE Conflicting handlers for org.eclipse.jdt.ui.edit.text.java.open.editor: {ActionHandler(org.eclipse.ant.internal.ui.editor.actions.OpenDeclarationAction@7ec706f4)} vs {ActionHandler(org.eclipse.ant.internal.ui.editor.actions.OpenDeclarationAction@62ecfe16)}
+!SESSION 2012-11-14 13:13:09.126 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.7.0_09
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/andrewbell8/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/andrewbell8/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2012-11-14 13:14:21.381
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface 2 0 2012-11-14 13:14:41.684
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-11-14 13:14:41.684
+!MESSAGE A conflict occurred for SHIFT+F9:
+Binding(SHIFT+F9,
+	ParameterizedCommand(Command(org.eclipse.jubula.client.ui.rcp.commands.ShowFromClipboard,Open Element from Clipboard,
+		,
+		Category(org.eclipse.jubula.client.ui.rcp.commands,Functional Test,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@27b3bb3a,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(SHIFT+F9,
+	ParameterizedCommand(Command(org.eclipse.cdt.make.ui.targetBuildCommand,Make Target Build,
+		Invoke a make target build for the selected container.,
+		Category(org.eclipse.ui.category.project,Project,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@8c8f133,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-11-14 13:14:41.684
+!MESSAGE A conflict occurred for F9:
+Binding(F9,
+	ParameterizedCommand(Command(org.eclipse.jubula.client.ui.rcp.commands.togglePauseOnErrorCommand,Pause on Test Execution Errors,
+		,
+		Category(org.eclipse.jubula.client.ui.rcp.commands,Functional Test,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@40534fc6,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(F9,
+	ParameterizedCommand(Command(org.eclipse.cdt.make.ui.targetBuildLastCommand,Rebuild Last Target,
+		Rebuild the last make target for the selected container or project.,
+		Category(org.eclipse.ui.category.project,Project,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@1d9a7128,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
